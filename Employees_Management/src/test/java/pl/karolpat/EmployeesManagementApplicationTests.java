@@ -1,4 +1,4 @@
-package pl.karolpat.app;
+package pl.karolpat;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
