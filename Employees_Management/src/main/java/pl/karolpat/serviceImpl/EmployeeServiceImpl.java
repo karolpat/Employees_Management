@@ -7,14 +7,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pl.karolpat.entity.Employee;
 import pl.karolpat.entity.Position;
-import pl.karolpat.exception.InstanceNotFound;
+import pl.karolpat.exception.EmployeeNotFoundException;
+import pl.karolpat.exception.NonuniqueEmailException;
 import pl.karolpat.repository.EmployeeRepo;
 import pl.karolpat.service.EmployeeService;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 	
-	private static final String EXCEPTION_MESSAGE = "There is no entity with given ID";
+	private static final String EMPLOYEE_EXCEPTION_MESSAGE = "There is no employee with a such ID.";
+	private static final String EMAIL_EXCEPTION_MESSAGE = "Given email is already present.";
 
 	private EmployeeRepo employeeRepo;
 
@@ -23,9 +25,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Employee addEmployee(String firstName, String lastName, Position position, String email) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public Employee addEmployee(String firstName, String lastName, Position position, String email)
+			throws NonuniqueEmailException {
+		Employee emp = new Employee();
+		
+		emp.setFirstName(firstName)
+			.setLastName(lastName)
+			.setPosition(position)
+			.setEmail(checkEmail(email))
+			.setActive(true);;
+		
+		return employeeRepo.save(emp);
 	}
 
 	@Override
@@ -45,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	@Transactional
-	public Employee removeEmployee(long id) throws InstanceNotFound {
+	public Employee removeEmployee(long id) throws EmployeeNotFoundException {
 
 		Employee emp = findEmployeeById(id);
 		emp.setActive(false);
@@ -54,7 +65,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	@Transactional
-	public Employee restoreEmployee(long id) throws InstanceNotFound {
+	public Employee restoreEmployee(long id) throws EmployeeNotFoundException {
 		
 		Employee emp = findEmployeeById(id);
 		emp.setActive(true);
@@ -71,13 +82,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepo.findAll();
 	}
 
-	public Employee findEmployeeById(long id) throws InstanceNotFound {
+	public Employee findEmployeeById(long id) throws EmployeeNotFoundException {
 
 		Employee emp = employeeRepo.findOne(id);
 		if (emp == null) {
-			throw new InstanceNotFound(EXCEPTION_MESSAGE);
+			throw new EmployeeNotFoundException(EMPLOYEE_EXCEPTION_MESSAGE);
 		} else {
 			return emp;
+		}
+	}
+	
+	public String checkEmail(String email) throws NonuniqueEmailException {
+		
+		Employee emp = employeeRepo.findOneByEmail(email);
+		if(emp!=null) {
+			throw new NonuniqueEmailException(EMAIL_EXCEPTION_MESSAGE);
+		}else {
+			return email;
 		}
 	}
 
