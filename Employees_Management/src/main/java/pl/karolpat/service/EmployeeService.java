@@ -20,4 +20,5 @@ public interface EmployeeService {
 	public Employee getOneByEmail(String email);
 
 	public Employee removeEmployee(long id) throws InstanceNotFound;
+	public Employee restoreEmployee(long id) throws InstanceNotFound;
 }

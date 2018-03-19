@@ -13,6 +13,8 @@ import pl.karolpat.service.EmployeeService;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+	
+	private static final String EXCEPTION_MESSAGE = "There is no entity with given ID";
 
 	private EmployeeRepo employeeRepo;
 
@@ -48,7 +50,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Employee emp = findEmployeeById(id);
 		emp.setActive(false);
 		return employeeRepo.save(emp);
-
+	}
+	
+	@Override
+	@Transactional
+	public Employee restoreEmployee(long id) throws InstanceNotFound {
+		
+		Employee emp = findEmployeeById(id);
+		emp.setActive(true);
+		return employeeRepo.save(emp);
 	}
 
 	@Override
@@ -65,7 +75,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		Employee emp = employeeRepo.findOne(id);
 		if (emp == null) {
-			throw new InstanceNotFound("There is no entity with given ID");
+			throw new InstanceNotFound(EXCEPTION_MESSAGE);
 		} else {
 			return emp;
 		}

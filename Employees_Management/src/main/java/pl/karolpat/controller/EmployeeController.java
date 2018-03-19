@@ -70,7 +70,13 @@ public class EmployeeController {
 	
 	@PutMapping("/delete/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Employee deleteUser(@PathVariable("id") long id) throws InstanceNotFound {
+	public Employee deleteEmployee(@PathVariable("id") long id) throws InstanceNotFound {
 		return employeeService.removeEmployee(id);
+	}
+	
+	@PutMapping("/restore/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Employee restoreEmployee(@PathVariable("id") long id) throws InstanceNotFound {
+		return employeeService.restoreEmployee(id);
 	}
 }
