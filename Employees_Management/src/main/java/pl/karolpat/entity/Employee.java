@@ -48,32 +48,36 @@ public class Employee {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
+	public Employee setFirstName(String firstName) {
 		this.firstName = firstName;
+		return this;
 	}
 
 	public String getLastName() {
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
+	public Employee setLastName(String lastName) {
 		this.lastName = lastName;
+		return this;
 	}
 
 	public Position getPosition() {
 		return position;
 	}
 
-	public void setPosition(Position position) {
+	public Employee setPosition(Position position) {
 		this.position = position;
+		return this;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public Employee setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 
 	public boolean isActive() {
