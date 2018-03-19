@@ -15,4 +15,6 @@ public interface EmployeeRepo extends JpaRepository<Employee, Long> {
 	List<Employee> findAllByActive(boolean active);
 
 	Employee findOneByEmailAndActive(String email, boolean active);
+	
+	Employee findOneByEmail(String email);
 }
