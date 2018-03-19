@@ -4,11 +4,12 @@ import java.util.List;
 
 import pl.karolpat.entity.Employee;
 import pl.karolpat.entity.Position;
-import pl.karolpat.exception.InstanceNotFound;
+import pl.karolpat.exception.EmployeeNotFoundException;
+import pl.karolpat.exception.NonuniqueEmailException;
 
 public interface EmployeeService {
 
-	public Employee addEmployee(String firstName, String lastName, Position position, String email);
+	public Employee addEmployee(String firstName, String lastName, Position position, String email) throws NonuniqueEmailException;
 
 	public List<Employee> getAllActive();
 	public List<Employee> getAll();
@@ -19,6 +20,6 @@ public interface EmployeeService {
 
 	public Employee getOneByEmail(String email);
 
-	public Employee removeEmployee(long id) throws InstanceNotFound;
-	public Employee restoreEmployee(long id) throws InstanceNotFound;
+	public Employee removeEmployee(long id) throws EmployeeNotFoundException;
+	public Employee restoreEmployee(long id) throws EmployeeNotFoundException;
 }
