@@ -82,7 +82,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepo.findAll();
 	}
 
-	public Employee findEmployeeById(long id) throws EmployeeNotFoundException {
+	private Employee findEmployeeById(long id) throws EmployeeNotFoundException {
 
 		Employee emp = employeeRepo.findOne(id);
 		if (emp == null) {
@@ -92,7 +92,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 	}
 	
-	public String checkEmail(String email) throws NonuniqueEmailException {
+	private String checkEmail(String email) throws NonuniqueEmailException {
 		
 		Employee emp = employeeRepo.findOneByEmail(email);
 		if(emp!=null) {
