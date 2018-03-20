@@ -24,18 +24,18 @@ nbdist/
 .nb-gradle/
 
 allclasses-frame.html
-	allclasses-noframe.html
-	constant-values.html
-	deprecated-list.html
-	help-doc.html
-	index-files/
-	index.html
-	overview-frame.html
-	overview-summary.html
-	overview-tree.html
-	package-list
-	pl/
-	script.js
-	serialized-form.html
-	stylesheet.css
+allclasses-noframe.html
+constant-values.html
+deprecated-list.html
+help-doc.html
+index-files/
+index.html
+overview-frame.html
+overview-summary.html
+overview-tree.html
+package-list
+pl/
+script.js
+serialized-form.html
+stylesheet.css
 
