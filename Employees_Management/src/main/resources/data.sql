@@ -1,3 +1,3 @@
-insert into position (name) values ('Sales'), ('Management'), ('Interns'), ('Finance'),('Administration');
+insert into position (name) values ('CEO'), ('Director'), ('Manager'), ('Engineer'),('Accountant'),('Intern');
 
-insert into employee (first_name, last_name, email,position_id) values('Karol','Patecki', 'karol@karol.pl',2),('Michał','Kowalski', 'michal@michal.pl',2), ('Michał', 'Jankowski', 'michal@jankowski.pl',3),('Jan', 'Kowalski', 'jan@jankowski.pl',1); 
+insert into employee (first_name, last_name, email,position_id) values('Karol','Patecki', 'karol@karol.pl',1),('Michał','Kowalski', 'michal@michal.pl',2), ('Michał', 'Jankowski', 'michal@jankowski.pl',2),('Jan', 'Kowalski', 'jan@jankowski.pl',2),('Jan', 'Nowak', 'jan@nowak.pl',3),('Krzyś', 'Kowalski', 'krzys@kowalski.pl',3),('Krzyś', 'Nowak', 'krzys@nowak.pl',3),('Anna', 'Kowalska', 'anna@kowalska.pl',4),('Hanna', 'Kowalska', 'hanna@kowalska.pl',4),('Joanna', 'Kowalska', 'joanna@kowalska.pl',5),('Student', 'Kowalski', 'student@jankowski.pl',6),('Praktykant', 'Kowalski', 'praktykant@jankowski.pl',6); 
