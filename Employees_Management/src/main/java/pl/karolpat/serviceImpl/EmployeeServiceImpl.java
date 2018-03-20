@@ -2,6 +2,8 @@ package pl.karolpat.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,13 +75,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<Employee> getAllActive() {
-		return employeeRepo.findAllByActive(true);
+	public Page<Employee> getAllActive(Pageable pageable) {
+		return employeeRepo.findAllByActive(true, pageable);
 	}
 
 	@Override
-	public List<Employee> getAll() {
-		return employeeRepo.findAll();
+	public Page<Employee> getAll(Pageable pageable) {
+		return employeeRepo.findAll(pageable);
 	}
 
 	private Employee findEmployeeById(long id) throws EmployeeNotFoundException {

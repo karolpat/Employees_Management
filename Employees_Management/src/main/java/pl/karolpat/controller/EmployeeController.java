@@ -2,6 +2,8 @@ package pl.karolpat.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -70,15 +72,17 @@ public class EmployeeController {
 
 	@GetMapping("")
 	@ResponseBody
-	public List<Employee> getAllActive() {
-		return employeeService.getAllActive();
+	public Page<Employee> getAllActive(Pageable pageable){
+        Page<Employee> page = employeeService.getAllActive(pageable);
+        return page;
+//		return employeeService.getAllActive();
 	}
 
-	@GetMapping("/withDeleted")
-	@ResponseBody
-	public List<Employee> getAll() {
-		return employeeService.getAll();
-	}
+//	@GetMapping("/withDeleted")
+//	@ResponseBody
+//	public List<Employee> getAll() {
+//		return employeeService.getAll();
+//	}
 
 	@GetMapping("/firstName/{firstName}")
 	@ResponseBody
@@ -134,10 +138,8 @@ public class EmployeeController {
 	@PostMapping("/add/{firstName}/{lastName}/{position}/{email:.+}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Employee addNewEmployee(@PathVariable("firstName") String firstName,
-			@PathVariable("lastName") String lastName,
-			@PathVariable("position") long position,
-			@PathVariable("email") String email)
-					throws PositionNotFoundException, NonuniqueEmailException {
+			@PathVariable("lastName") String lastName, @PathVariable("position") long position,
+			@PathVariable("email") String email) throws PositionNotFoundException, NonuniqueEmailException {
 
 		Position pos = positionService.findOneById(position);
 		return employeeService.addEmployee(firstName, lastName, pos, email);
