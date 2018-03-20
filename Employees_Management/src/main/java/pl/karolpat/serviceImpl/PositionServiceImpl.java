@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import pl.karolpat.entity.Position;
 import pl.karolpat.exception.PositionExistsException;
@@ -42,6 +43,7 @@ public class PositionServiceImpl implements PositionService {
 	}
 
 	@Override
+	@Transactional
 	public Position add(String name) throws PositionExistsException {
 		return positionRepo.save(checkDuplicate(name));
 	}
