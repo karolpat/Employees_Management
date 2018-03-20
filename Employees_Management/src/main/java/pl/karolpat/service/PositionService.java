@@ -10,10 +10,10 @@ import pl.karolpat.exception.PositionNotFoundException;
 public interface PositionService {
 
 	Position findOneById(long id) throws PositionNotFoundException;
-	
+
 	List<Position> getAll();
-	
+
 	Position add(String name) throws PositionExistsException;
-	
-	Map<String, Integer> getPositionsWithEmployeesNumber();
+
+	Map<String, Long> getPositionsWithEmployeesNumber();
 }

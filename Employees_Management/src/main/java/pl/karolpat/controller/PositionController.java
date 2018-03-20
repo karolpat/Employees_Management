@@ -51,7 +51,7 @@ public class PositionController {
 
 	@GetMapping("/count")
 	@ResponseBody
-	public Map<String, Integer> getEmployeesOnPositions() {
+	public Map<String, Long> getEmployeesOnPositions() {
 		return positionService.getPositionsWithEmployeesNumber();
 	}
 }

@@ -59,13 +59,14 @@ public class PositionServiceImpl implements PositionService {
 	}
 
 	@Override
-	public Map<String, Integer> getPositionsWithEmployeesNumber() {
+	public Map<String, Long> getPositionsWithEmployeesNumber() {
 
-		Map<String, Integer> map = new HashMap<>();
+		Map<String, Long> map = new HashMap<>();
 		List<Position> list = positionRepo.findAll();
 
 		for (Position p : list) {
-			map.put(p.getName(), p.getEmployees().size());
+			long count = p.getEmployees().stream().filter(employee -> employee.isActive()).count();
+			map.put(p.getName(), count);
 		}
 		return map;
 	}
