@@ -70,19 +70,37 @@ public class EmployeeController {
 		return new ResponseEntity<ErrorRespone>(error, HttpStatus.OK);
 	}
 
+	/**
+	 * @param pageable params of the page. page=? and size=?
+	 * @return List of active employees
+	 */
 	@GetMapping("")
 	@ResponseBody
-	public Page<Employee> getAllActive(Pageable pageable){
-        Page<Employee> page = employeeService.getAllActive(pageable);
-        return page;
-//		return employeeService.getAllActive();
+	public Page<Employee> getAllActive(Pageable pageable) {
+		Page<Employee> page = employeeService.getAllActive(pageable);
+		return page;
+	}
+	
+	/** Shows list of only deleted employees.
+	 * @param pageable params of the page. page=? and size=?
+	 * @return List of deleted employees.
+	 */
+	@GetMapping("/deleted")
+	@ResponseBody
+	public Page<Employee> getAllDeleted(Pageable pageable) {
+		Page<Employee> page = employeeService.getAllActive(pageable);
+		return page;
 	}
 
-//	@GetMapping("/withDeleted")
-//	@ResponseBody
-//	public List<Employee> getAll() {
-//		return employeeService.getAll();
-//	}
+	/** Shows list of all employees whether or not employee is removed (hidden).
+	 * @param pageable params of the page. page=? and size=?
+	 * @return List of all employees.
+	 */
+	@GetMapping("/withDeleted")
+	@ResponseBody
+	public Page<Employee> getAll(Pageable pageable) {
+		return employeeService.getAll(pageable);
+	}
 
 	@GetMapping("/firstName/{firstName}")
 	@ResponseBody
@@ -135,6 +153,23 @@ public class EmployeeController {
 		return employeeService.restoreEmployee(id);
 	}
 
+	/**
+	 * Adding new Employee to database.
+	 * 
+	 * @param firstName
+	 *            first name of new Employee - String
+	 * @param lastName
+	 *            last name of new Employee - String
+	 * @param position
+	 *            position of new Employee - long (id of the position)
+	 * @param email
+	 *            email of new Employee - String
+	 * @return Just added new employee.
+	 * @throws PositionNotFoundException
+	 *             in case there is no position of given id.
+	 * @throws NonuniqueEmailException
+	 *             in case given email is already present.
+	 */
 	@PostMapping("/add/{firstName}/{lastName}/{position}/{email:.+}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Employee addNewEmployee(@PathVariable("firstName") String firstName,

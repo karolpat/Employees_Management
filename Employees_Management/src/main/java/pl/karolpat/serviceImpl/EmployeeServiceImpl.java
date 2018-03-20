@@ -16,7 +16,7 @@ import pl.karolpat.service.EmployeeService;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-	
+
 	private static final String EMPLOYEE_EXCEPTION_MESSAGE = "There is no employee with a such ID.";
 	private static final String EMAIL_EXCEPTION_MESSAGE = "Given email is already present.";
 
@@ -31,13 +31,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee addEmployee(String firstName, String lastName, Position position, String email)
 			throws NonuniqueEmailException {
 		Employee emp = new Employee();
-		
-		emp.setFirstName(firstName)
-			.setLastName(lastName)
-			.setPosition(position)
-			.setEmail(checkEmail(email))
-			.setActive(true);;
-		
+
+		emp.setFirstName(firstName).setLastName(lastName).setPosition(position).setEmail(checkEmail(email))
+				.setActive(true);
+		;
+
 		return employeeRepo.save(emp);
 	}
 
@@ -64,11 +62,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		emp.setActive(false);
 		return employeeRepo.save(emp);
 	}
-	
+
 	@Override
 	@Transactional
 	public Employee restoreEmployee(long id) throws EmployeeNotFoundException {
-		
+
 		Employee emp = findEmployeeById(id);
 		emp.setActive(true);
 		return employeeRepo.save(emp);
@@ -77,6 +75,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Page<Employee> getAllActive(Pageable pageable) {
 		return employeeRepo.findAllByActive(true, pageable);
+	}
+
+	@Override
+	public Page<Employee> getAllHidden(Pageable pageable) {
+		return employeeRepo.findAllByActive(false, pageable);
 	}
 
 	@Override
@@ -93,13 +96,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return emp;
 		}
 	}
-	
+
 	private String checkEmail(String email) throws NonuniqueEmailException {
-		
+
 		Employee emp = employeeRepo.findOneByEmail(email);
-		if(emp!=null) {
+		if (emp != null) {
 			throw new NonuniqueEmailException(EMAIL_EXCEPTION_MESSAGE);
-		}else {
+		} else {
 			return email;
 		}
 	}

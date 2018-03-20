@@ -17,6 +17,8 @@ public interface EmployeeService {
 
 	public Page<Employee> getAllActive(Pageable pageable);
 
+	public Page<Employee> getAllHidden(Pageable pageable);
+
 	public Page<Employee> getAll(Pageable pageable);
 
 	public List<Employee> getAllByFirstName(String firstName);
@@ -25,7 +27,21 @@ public interface EmployeeService {
 
 	public Employee getOneByEmail(String email);
 
+	/**
+	 * Removes employee of given id. In fact, the employee is not deleted from the
+	 * database. Only active status is changed to false, so that this employee will
+	 * not show in the searching.
+	 * 
+	 * @param id id of employee to be deleted.
+	 * @return Deleted employee.
+	 * @throws EmployeeNotFoundException Exception thrown in case there is no employee with given id.
+	 */
 	public Employee removeEmployee(long id) throws EmployeeNotFoundException;
 
+	/** Restores deleted(hidden) employee. Changes active status again to true.
+	 * @param id id of the employee to be restored.
+	 * @return Restored Employee.
+	 * @throws EmployeeNotFoundException Exception thrown in case there is no employee with given id.
+	 */
 	public Employee restoreEmployee(long id) throws EmployeeNotFoundException;
 }

@@ -29,6 +29,13 @@ public class PositionController {
 		this.positionService = positionService;
 	}
 
+	/**
+	 * Exception handling in case position with given name already exists.
+	 * 
+	 * @param e
+	 *            thrown exception.
+	 * @return HttpStatus number and a message.
+	 */
 	@ExceptionHandler(PositionExistsException.class)
 	public ResponseEntity<ErrorRespone> handleServerErrorException(Exception e) {
 		ErrorRespone error = new ErrorRespone();
@@ -49,6 +56,9 @@ public class PositionController {
 		return positionService.add(name);
 	}
 
+	/** Gives number of employees on every position.
+	 * @return Map containing position name and number of employees.
+	 */
 	@GetMapping("/count")
 	@ResponseBody
 	public Map<String, Long> getEmployeesOnPositions() {
