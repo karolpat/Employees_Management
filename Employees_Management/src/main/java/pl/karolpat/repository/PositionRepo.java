@@ -6,4 +6,7 @@ import pl.karolpat.entity.Position;
 
 public interface PositionRepo extends JpaRepository<Position, Long> {
 
+	
+	Position findOneByName(String name);
+	
 }
