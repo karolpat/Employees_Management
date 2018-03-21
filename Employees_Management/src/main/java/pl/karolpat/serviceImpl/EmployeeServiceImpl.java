@@ -24,7 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor=NonuniqueEmailException.class)
 	public Employee addEmployee(String firstName, String lastName, Position position, String email)
 			throws NonuniqueEmailException {
 		Employee emp = new Employee();
@@ -52,7 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor=EmployeeNotFoundException.class)
 	public Employee removeEmployee(long id) throws EmployeeNotFoundException {
 
 		Employee emp = findEmployeeById(id);
@@ -61,7 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor=EmployeeNotFoundException.class)
 	public Employee restoreEmployee(long id) throws EmployeeNotFoundException {
 
 		Employee emp = findEmployeeById(id);

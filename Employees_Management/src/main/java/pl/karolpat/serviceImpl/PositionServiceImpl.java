@@ -40,7 +40,7 @@ public class PositionServiceImpl implements PositionService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor=PositionExistsException.class)
 	public Position add(String name) throws PositionExistsException {
 		return positionRepo.save(checkDuplicate(name));
 	}
