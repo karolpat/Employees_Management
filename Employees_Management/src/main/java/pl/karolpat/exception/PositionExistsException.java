@@ -1,14 +1,11 @@
 package pl.karolpat.exception;
 
-public class PositionExistsException extends Exception{
+@SuppressWarnings("serial")
+public class PositionExistsException extends RuntimeException {
 
-	private static final long serialVersionUID = -7153456088065L;
+	private static final String MESSAGE = "Position with given name already exists.";
 
 	public PositionExistsException() {
-		super();
-	}
-	
-	public PositionExistsException(String message) {
-		super(message);
+		super(MESSAGE);
 	}
 }

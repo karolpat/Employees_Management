@@ -17,9 +17,6 @@ import pl.karolpat.service.EmployeeService;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-	private static final String EMPLOYEE_EXCEPTION_MESSAGE = "There is no employee with a such ID.";
-	private static final String EMAIL_EXCEPTION_MESSAGE = "Given email is already present.";
-
 	private EmployeeRepo employeeRepo;
 
 	public EmployeeServiceImpl(EmployeeRepo employeeRepo) {
@@ -91,7 +88,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		Employee emp = employeeRepo.findOne(id);
 		if (emp == null) {
-			throw new EmployeeNotFoundException(EMPLOYEE_EXCEPTION_MESSAGE);
+			throw new EmployeeNotFoundException();
 		} else {
 			return emp;
 		}
@@ -101,7 +98,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		Employee emp = employeeRepo.findOneByEmail(email);
 		if (emp != null) {
-			throw new NonuniqueEmailException(EMAIL_EXCEPTION_MESSAGE);
+			throw new NonuniqueEmailException();
 		} else {
 			return email;
 		}

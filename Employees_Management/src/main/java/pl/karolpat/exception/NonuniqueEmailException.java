@@ -1,14 +1,11 @@
 package pl.karolpat.exception;
 
-public class NonuniqueEmailException extends Exception{
+@SuppressWarnings("serial")
+public class NonuniqueEmailException extends RuntimeException {
 
-	private static final long serialVersionUID = 3773137172L;
+	private static final String MESSAGE = "Given email is already present.";
 
 	public NonuniqueEmailException() {
-		super();
-	}
-	
-	public NonuniqueEmailException(String message) {
-		super(message);
+		super(MESSAGE);
 	}
 }

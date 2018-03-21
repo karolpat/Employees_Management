@@ -16,9 +16,6 @@ import pl.karolpat.service.PositionService;
 @Service
 public class PositionServiceImpl implements PositionService {
 
-	private static final String NOT_FOUND_EXCEPTION_MESSAGE = "There is no position with a such ID.";
-	private static final String POSITION_EXISTS_EXCEPTION_MESSAGE = "Position with given name already exists.";
-
 	private PositionRepo positionRepo;
 
 	public PositionServiceImpl(PositionRepo positionRepo) {
@@ -30,7 +27,7 @@ public class PositionServiceImpl implements PositionService {
 
 		Position position = positionRepo.findOne(id);
 		if (position == null) {
-			throw new PositionNotFoundException(NOT_FOUND_EXCEPTION_MESSAGE);
+			throw new PositionNotFoundException();
 		} else {
 			return position;
 		}
@@ -53,7 +50,7 @@ public class PositionServiceImpl implements PositionService {
 		Position position = positionRepo.findOneByName(name);
 
 		if (position != null) {
-			throw new PositionExistsException(POSITION_EXISTS_EXCEPTION_MESSAGE);
+			throw new PositionExistsException();
 		} else {
 			position = new Position(name);
 			return position;

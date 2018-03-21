@@ -1,15 +1,12 @@
 package pl.karolpat.exception;
 
-public class PositionNotFoundException extends Exception{
+@SuppressWarnings("serial")
+public class PositionNotFoundException extends RuntimeException{
 
-	private static final long serialVersionUID = 13762145515578L;
+	private static final String MESSAGE = "There is no position with a such ID.";
 	
-	public PositionNotFoundException() {
-		super();
-	}
-	
-	public PositionNotFoundException(String message){
-		super(message);
+	public PositionNotFoundException(){
+		super(MESSAGE);
 	}
 
 }

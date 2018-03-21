@@ -1,16 +1,12 @@
 package pl.karolpat.exception;
 
-public class EmployeeNotFoundException extends Exception {
+@SuppressWarnings("serial")
+public class EmployeeNotFoundException extends RuntimeException {
 
-	private static final long serialVersionUID = 12123123412345L;
-	
-	
+	private static final String MESSAGE = "There is no employee with such an ID.";
+
 	public EmployeeNotFoundException() {
-		super();
-	}
-	
-	public EmployeeNotFoundException(String message){
-		super(message);
+		super(MESSAGE);
 	}
 
 }
