@@ -19,7 +19,7 @@ Shows all employees whose last name is Kowalski.
 *http://localhost:5555/employees/lastName/{lastName}* - this is the raw path to insert demanded last name into to the curly brackets.
 
 [Shows employee with email address karol@karol.pl](http://localhost:5555/employees/email/karol@karol.pl) - GET
-Gives employee whose email address is karol@karol.pl
+Gives employee whose email address is karol@<span></span>karol.pl
 *http://localhost:5555/employees/email/{email}* - this is the raw path to insert demanded email address into to the curly brackets.
 
 [Deletes the employee of ID 5](http://localhost:5555/employees/delete/5) - PUT
