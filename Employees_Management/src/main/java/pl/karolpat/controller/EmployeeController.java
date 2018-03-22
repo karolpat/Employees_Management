@@ -88,7 +88,7 @@ public class EmployeeController {
 	@GetMapping("/deleted")
 	@ResponseBody
 	public Page<Employee> getAllDeleted(Pageable pageable) {
-		Page<Employee> page = employeeService.getAllActive(pageable);
+		Page<Employee> page = employeeService.getAllHidden(pageable);
 		return page;
 	}
 
