@@ -44,6 +44,8 @@ Gives employee whose email address is karol@<span></span>karol.pl
 
 Changes the active status of employee to false, so that employee is now like deleted but still appears in the database and could be easily restored with the following action.
 *http://localhost:5555/employees/delete/{id}* - this is the raw path to insert demanded ID into to the curly brackets.
+
+
 ---
 [Restores the deleted employee of ID 5](http://localhost:5555/employees/restore/5) - PUT
 
