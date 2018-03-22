@@ -33,7 +33,7 @@ Shows all employees whose last name is Kowalski.
 
 
 ---
-[Shows employee with email address karol@k<span></span>arol.pl](http://localhost:5555/employees/email/karol@karol.pl) - GET
+[Shows employee with email address karol@karol.pl](http://localhost:5555/employees/email/karol@karol.pl) - GET
 
 Gives employee whose email address is karol@<span></span>karol.pl
 *http://localhost:5555/employees/email/{email}* - this is the raw path to insert demanded email address into to the curly brackets.
@@ -44,7 +44,6 @@ Gives employee whose email address is karol@<span></span>karol.pl
 
 Changes the active status of employee to false, so that employee is now like deleted but still appears in the database and could be easily restored with the following action.
 *http://localhost:5555/employees/delete/{id}* - this is the raw path to insert demanded ID into to the curly brackets.
-
 
 ---
 [Restores the deleted employee of ID 5](http://localhost:5555/employees/restore/5) - PUT
@@ -81,6 +80,5 @@ Shows list of positions and number of employees on every consecutive position.
 [Creates new position with name Killer](http://localhost:5555/positions/add/Killer) - POST
 
 Creates new position that name is Killer.
-
 *http://localhost:5555/positions/add/{name}* - this is the raw path to insert demanded position's name into to the curly brackets.
 
