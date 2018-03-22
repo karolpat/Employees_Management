@@ -24,14 +24,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	@Transactional(rollbackFor=NonuniqueEmailException.class)
+	@Transactional(rollbackFor = NonuniqueEmailException.class)
 	public Employee addEmployee(String firstName, String lastName, Position position, String email)
 			throws NonuniqueEmailException {
-		Employee emp = new Employee();
+		Employee emp = checkEmail(email);
 
-		emp.setFirstName(firstName).setLastName(lastName).setPosition(position).setEmail(checkEmail(email))
-				.setActive(true);
-		;
+		emp.setFirstName(firstName).setLastName(lastName).setPosition(position).setActive(true);
 
 		return employeeRepo.save(emp);
 	}
@@ -52,7 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	@Transactional(rollbackFor=EmployeeNotFoundException.class)
+	@Transactional(rollbackFor = EmployeeNotFoundException.class)
 	public Employee removeEmployee(long id) throws EmployeeNotFoundException {
 
 		Employee emp = findEmployeeById(id);
@@ -61,7 +59,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	@Transactional(rollbackFor=EmployeeNotFoundException.class)
+	@Transactional(rollbackFor = EmployeeNotFoundException.class)
 	public Employee restoreEmployee(long id) throws EmployeeNotFoundException {
 
 		Employee emp = findEmployeeById(id);
@@ -84,7 +82,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepo.findAll(pageable);
 	}
 
-	private Employee findEmployeeById(long id) throws EmployeeNotFoundException {
+	public Employee findEmployeeById(long id) throws EmployeeNotFoundException {
 
 		Employee emp = employeeRepo.findOne(id);
 		if (emp == null) {
@@ -94,13 +92,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 	}
 
-	private String checkEmail(String email) throws NonuniqueEmailException {
+	private Employee checkEmail(String email) throws NonuniqueEmailException {
 
 		Employee emp = employeeRepo.findOneByEmail(email);
-		if (emp != null) {
-			throw new NonuniqueEmailException();
+		if (emp == null) {
+			return new Employee(email);
 		} else {
-			return email;
+			throw new NonuniqueEmailException();
 		}
 	}
 

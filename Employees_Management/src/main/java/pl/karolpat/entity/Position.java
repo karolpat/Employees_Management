@@ -31,6 +31,10 @@ public class Position {
 		super();
 		this.name = name;
 	}
+	public Position(String name,long id) {
+		this.id = id;
+		this.name=name;
+	}
 
 	public long getId() {
 		return id;

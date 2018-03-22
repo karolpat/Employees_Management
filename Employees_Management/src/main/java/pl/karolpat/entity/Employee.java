@@ -36,6 +36,16 @@ public class Employee {
 	@Column(columnDefinition = "tinyint(1) default 1")
 	private boolean active;
 
+	public Employee() {}
+
+	public Employee(String email, long id) {
+		this.email = email;
+		this.id=id;
+	}
+	public Employee(String email) {
+		this.email = email;
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -88,11 +98,10 @@ public class Employee {
 		this.active = active;
 	}
 
-	 @Override
-	 public String toString() {
-	 return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" +
-	 lastName + ", position=" + position
-	 + ", email=" + email + ", active=" + active + "]";
-	 }
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", position=" + position
+				+ ", email=" + email + ", active=" + active + "]";
+	}
 
 }
