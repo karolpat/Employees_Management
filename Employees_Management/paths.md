@@ -3,12 +3,15 @@
 [List of all active employees](http://localhost:5555/employees) - GET
 
 *page* and *size* params would be usefull.
----
 
+
+---
 [List of all deleted employees](http://localhost:5555/employees/deleted) - GET
 
 In fact, those employees are not deleted, but only hidden. They will not be shown on lists of employees, although they are still in the database ready to be restored.
 Please, delete some employees first to check that.
+
+
 ---
 [List of all employees](http://localhost:5555/employees/withDeleted) - GET
 
