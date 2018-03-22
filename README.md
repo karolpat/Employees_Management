@@ -12,7 +12,7 @@ First fork and clone the repository. Then in the project directory Employee_Mana
 To check functionalities use Postman preferably on localhost:5555/
 The project uses embedded H2 database.
 
-### REST API for car parking management. 
+### REST API for company's employees management. 
 
 Implements short user stories as follows:
 
