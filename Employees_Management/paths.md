@@ -33,7 +33,7 @@ Shows all employees whose last name is Kowalski.
 
 
 ---
-[Shows employee with email address karol@karol.pl](http://localhost:5555/employees/email/karol@karol.pl) - GET
+[Shows employee with email address karol@k<span></span>arol.pl](http://localhost:5555/employees/email/karol@karol.pl) - GET
 
 Gives employee whose email address is karol@<span></span>karol.pl
 *http://localhost:5555/employees/email/{email}* - this is the raw path to insert demanded email address into to the curly brackets.
