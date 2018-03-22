@@ -23,7 +23,7 @@ import pl.karolpat.exception.EmployeeNotFoundException;
 import pl.karolpat.repository.EmployeeRepo;
 import pl.karolpat.serviceImpl.EmployeeServiceImpl;
 
-public class TestEmployeeService {
+public class EmployeeServiceTest {
 
 	private EmployeeRepo employeeRepo;
 	private EmployeeService employeeService;
